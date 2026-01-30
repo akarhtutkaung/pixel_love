@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A pixel art style Valentine's proposal game. Will you be my Player 2?">
+    <meta property="og:title" content="Player 1 Wants to Marry You! 🎮">
+    <meta property="og:description" content="A pixel art style Valentine's proposal game. Will you be my Player 2?">
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👾</text></svg>">
+    <title>Player 1 Wants to Take You Out! 🎮</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- CRT Filter Overlay -->
+    <div class="crs-scanline"></div>
+
+    <main class="game-container">
+        <!-- Audio (Auto-plays on interaction) -->
+        <audio id="bg-music" loop>
+            <source src="assets/music.mp3" type="audio/mpeg">
+        </audio>
+
+        <header>
+            <div class="score-board">
+                <span>1UP <span id="score">000000</span></span>
+                <span>HIGH SCORE 999999</span>
+            </div>
+        </header>
+
+        <div class="main-screen">
+            <h1 class="pixel-title blink">NEW CHALLENGER!</h1>
+
+            <div class="pixel-heart-container">
+                <div class="pixel-heart"></div>
+            </div>
+
+            <div class="text-box">
+                <p>PLAYER 1 (James) asks:</p>
+                <p class="question">WILL YOU BE MY VALENTINE ASHLEY?</p>
+            </div>
+
+            <div class="controls">
+                <div class="d-pad">
+                    <div class="up"></div>
+                    <div class="left"></div>
+                    <div class="center"></div>
+                    <div class="right"></div>
+                    <div class="down"></div>
+                </div>
+
+                <div class="action-buttons">
+                    <button id="yes-btn" class="pixel-btn yes">START<br>(YES)</button>
+                    <button id="no-btn" class="pixel-btn no">SELECT<br>(NO)</button>
+                </div>
+            </div>
+
+            <p class="insert-coin">INSERT LOVE TO JOIN</p>
+        </div>
+    </main>
+
+    <!-- Game Over / Win Screen -->
+    <div id="win-screen" class="win-screen hidden">
+        <h1 class="blink-fast">LEVEL COMPLETE!</h1>
+        <div class="trophy">🏆</div>
+        <p>PLAYER 2 (ASHLEY) </p>
+        <br>
+        <p>JOINED THE GAME!</p>
+        <p class="small-text">Pick up at 7PM. Ready Player One?</p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

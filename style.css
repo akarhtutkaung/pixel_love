@@ -1,0 +1,353 @@
+:root {
+    --bg-color: #202028;
+    /* Gameboy dark grey/black */
+    --pixel-red: #d32f2f;
+    --pixel-white: #ffffff;
+    --pixel-yellow: #ffeb3b;
+    /* Coin color */
+    --pixel-green: #388e3c;
+    --pixel-blue: #1976d2;
+    --font-retro: 'Press Start 2P', cursive;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #000;
+    color: var(--pixel-white);
+    font-family: var(--font-retro);
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* CRT Scanline Effect */
+.crs-scanline {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%,
+            rgba(0, 0, 0, 0.25) 50%);
+    background-size: 100% 4px;
+    z-index: 100;
+    pointer-events: none;
+}
+
+.game-container {
+    width: 100%;
+    max-width: 420px;
+    height: 90vh;
+    background-color: var(--bg-color);
+    border: 4px solid var(--pixel-white);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    box-shadow: 0 0 50px rgba(211, 47, 47, 0.2),
+        20px 20px 0 rgba(0, 0, 0, 0.5);
+    /* Retro depth shadow */
+    transition: transform 0.3s ease;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.6rem;
+    margin-bottom: 30px;
+    color: var(--pixel-red);
+}
+
+.main-screen {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.pixel-title {
+    color: var(--pixel-yellow);
+    font-size: 1.2rem;
+    text-shadow: 4px 4px var(--pixel-red);
+    text-align: center;
+    line-height: 1.5;
+}
+
+.blink {
+    animation: blink 1s infinite;
+}
+
+.blink-fast {
+    animation: blink 0.4s infinite;
+}
+
+@keyframes blink {
+
+    0%,
+    49% {
+        opacity: 1;
+    }
+
+    50%,
+    100% {
+        opacity: 0;
+    }
+}
+
+/* CSS Pixel Heart */
+.pixel-heart-container {
+    padding: 25px;
+}
+
+.pixel-heart {
+    width: 80px;
+    height: 80px;
+    /* background-color: var(--pixel-red); */
+    position: relative;
+    /* box-shadow:
+        -10px 0 0 0 #000,
+        10px 0 0 0 #000,
+        0 -10px 0 0 #000,
+        0 10px 0 0 #000; */
+    /* This needs a complex box-shadow or SVG ideally, let's use a simpler shape for CSS reliability or emoji */
+    background: transparent;
+}
+
+/* Let's try a pure CSS pixel heart using box-shadows on a 1x1 div */
+/* CSS Pixel Heart - Corrected Grid */
+.pixel-heart:after {
+    content: '';
+    display: block;
+    width: 10px;
+    height: 10px;
+    background: transparent;
+    /* Top-left (0,0) is empty */
+    box-shadow:
+        /* Row 0 - Top Bumps */
+        10px 0 var(--pixel-red), 20px 0 var(--pixel-red),
+        40px 0 var(--pixel-red), 50px 0 var(--pixel-red),
+
+        /* Row 1 - Widest with Center Dip */
+        0px 10px var(--pixel-red), 30px 10px var(--pixel-red), 60px 10px var(--pixel-red),
+
+        /* Row 2 - Sides going down */
+        0px 20px var(--pixel-red), 60px 20px var(--pixel-red),
+
+        /* Row 3 - Start narrowing */
+        10px 30px var(--pixel-red), 50px 30px var(--pixel-red),
+
+        /* Row 4 - Narrowing */
+        20px 40px var(--pixel-red), 40px 40px var(--pixel-red),
+
+        /* Row 5 - Tip */
+        30px 50px var(--pixel-red);
+
+    transform: scale(2);
+    margin-left: -35px;
+    /* Center adjustment (70px width / 2) */
+    animation: heartbeat 0.8s infinite;
+    top: 20px;
+
+    position: absolute;
+    /* Ensure it can be centered relative to parent */
+    left: 50%;
+    /* Move to center */
+
+    /* 
+       The visual heart is offsets (0,0) to (60,50) + 10px width/height = 70px wide, 60px tall.
+       Center is roughly 35px 30px.
+       Since this element acts as the top-left pixel (0,0), we set origin relative to it.
+    */
+    transform-origin: 35px 30px;
+}
+
+@keyframes heartbeat {
+    0% {
+        transform: scale(2);
+    }
+
+    10% {
+        transform: scale(2.2);
+    }
+
+    20% {
+        transform: scale(2);
+    }
+}
+
+.text-box {
+    border: 4px solid var(--pixel-white);
+    padding: 15px;
+    width: 100%;
+    margin: 10px 0;
+    text-align: center;
+    background: #000;
+}
+
+.question {
+    color: var(--pixel-green);
+    margin-top: 10px;
+    line-height: 1.5;
+}
+
+.controls {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    margin-top: 20px;
+}
+
+/* D-Pad Visual only */
+.d-pad {
+    width: 100px;
+    height: 100px;
+    position: relative;
+}
+
+.d-pad div {
+    position: absolute;
+    background: #555;
+}
+
+.d-pad .center {
+    top: 35px;
+    left: 35px;
+    width: 30px;
+    height: 30px;
+}
+
+.d-pad .up {
+    top: 5px;
+    left: 35px;
+    width: 30px;
+    height: 30px;
+}
+
+.d-pad .down {
+    bottom: 5px;
+    left: 35px;
+    width: 30px;
+    height: 30px;
+}
+
+.d-pad .left {
+    top: 35px;
+    left: 5px;
+    width: 30px;
+    height: 30px;
+}
+
+.d-pad .right {
+    top: 35px;
+    right: 5px;
+    width: 30px;
+    height: 30px;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 20px;
+}
+
+.pixel-btn {
+    font-family: var(--font-retro);
+    border: 4px solid #fff;
+    padding: 15px 10px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.5);
+    background: var(--pixel-red);
+    color: white;
+    touch-action: manipulation;
+}
+
+.pixel-btn:active {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.5);
+}
+
+.no {
+    background: #555;
+}
+
+.insert-coin {
+    font-size: 0.7rem;
+    color: var(--pixel-yellow);
+    animation: blink 1.5s infinite;
+    margin-top: 10px;
+}
+
+/* Win Screen */
+.win-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    z-index: 200;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.win-screen.hidden {
+    display: none;
+}
+
+.win-screen h1 {
+    color: var(--pixel-yellow);
+    font-size: 2rem;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.trophy {
+    font-size: 4rem;
+    margin: 20px 0;
+}
+
+.small-text {
+    font-size: 0.7rem;
+    color: #888;
+    margin-top: 20px;
+}
+
+.restart-btn {
+    margin-top: 40px;
+    background: transparent;
+    color: var(--pixel-white);
+    border: 2px solid var(--pixel-white);
+    padding: 10px;
+    font-family: var(--font-retro);
+    cursor: pointer;
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+    .pixel-title {
+        font-size: 1rem;
+    }
+
+    .controls {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .d-pad {
+        transform: scale(0.8);
+    }
+}
