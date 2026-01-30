@@ -1,5 +1,7 @@
 # 🎮 Pixel Love
 
+*@author: [Akar Htut Kaung (aka. Wu Qing Hai)](https://github.com/akarhtutkaung)*
+
 A retro pixel art style Valentine's proposal game with 8-bit aesthetics and nostalgic gaming vibes.
 
 **[Live Demo](https://tootterhalf.web.app/?template=pixel_love)**
