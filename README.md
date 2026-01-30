@@ -4,7 +4,7 @@
 
 A retro pixel art style Valentine's proposal game with 8-bit aesthetics and nostalgic gaming vibes.
 
-**[Live Demo](https://tootterhalf.web.app/?template=pixel_love)**
+**[Live Demo](https://tootterhalf.web.app/templates/pixel_love/index.html)**
 
 ## 💕 Part of
 
